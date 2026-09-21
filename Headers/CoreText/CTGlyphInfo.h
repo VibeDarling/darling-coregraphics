@@ -29,9 +29,13 @@
 #include <CoreGraphics/CGFont.h>
 #include <CoreText/CTFont.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Data Types */
 
-#ifdef __OBJC__
+#ifdef INTERNAL_BUILD_OBJC
 @class CTGlyphInfo;
 typedef CTGlyphInfo* CTGlyphInfoRef;
 #else
@@ -40,14 +44,15 @@ typedef struct CTGlyphInfo* CTGlyphInfoRef;
 
 /* Constants */
 
-typedef enum {
+enum {
   kCTIdentityMappingCharacterCollection = 0,
   kCTAdobeCNS1CharacterCollection = 1,
   kCTAdobeGB1CharacterCollection = 2,
   kCTAdobeJapan1CharacterCollection = 3,
   kCTAdobeJapan2CharacterCollection = 4,
   kCTAdobeKorea1CharacterCollection = 5
-} CTCharacterCollection;
+};
+typedef int CTCharacterCollection;
 
 /* Functions */
 
@@ -76,5 +81,9 @@ CFStringRef CTGlyphInfoGetGlyphName(CTGlyphInfoRef glyphInfo);
 CGFontIndex CTGlyphInfoGetCharacterIdentifier(CTGlyphInfoRef glyphInfo);
 
 CTCharacterCollection CTGlyphInfoGetCharacterCollection(CTGlyphInfoRef glyphInfo);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

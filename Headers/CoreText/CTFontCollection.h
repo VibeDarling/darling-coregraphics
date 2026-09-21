@@ -28,9 +28,13 @@
 #include <CoreGraphics/CGBase.h>
 #include <CoreText/CTFontDescriptor.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Data Types */
 
-#ifdef __OBJC__
+#ifdef INTERNAL_BUILD_OBJC
 @class CTFontCollection;
 typedef CTFontCollection* CTFontCollectionRef;
 #else
@@ -73,5 +77,9 @@ CTFontCollectionRef CTFontCollectionCreateWithFontDescriptors(
 );
 
 CFTypeID CTFontCollectionGetTypeID();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

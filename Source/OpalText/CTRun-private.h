@@ -40,6 +40,11 @@
   CGAffineTransform _matrix;
 }
 
+- (id)initWithGlyphs: (const CGGlyph *)glyphs
+            advances: (const CGSize *)advances
+               count: (size_t)count
+          attributes: (NSDictionary *)attributes
+         stringRange: (CFRange)stringRange;
 - (CFIndex)glyphCount;
 - (NSDictionary*)attributes;
 - (CTRunStatus)status;
@@ -56,5 +61,17 @@
                   withContext: (CGContextRef)context;
 - (CGAffineTransform)matrix;
 - (void)drawRange: (CFRange)range onContext: (CGContextRef)ctx;
+
+/**
+ * Lays the run's glyphs out from x, keeping their advances.  A run's positions
+ * are relative to the origin of the line holding it, so a line places each of
+ * its runs after the one before it.
+ */
+- (void)placeAtX: (CGFloat)x;
+
+/**
+ * A run holding count glyphs of this one, starting at index.
+ */
+- (CTRun *)runWithGlyphsFrom: (CFIndex)index count: (CFIndex)count;
 
 @end

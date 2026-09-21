@@ -27,9 +27,13 @@
 
 #include <CoreGraphics/CGBase.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Data Types */
 
-#ifdef __OBJC__
+#ifdef INTERNAL_BUILD_OBJC
 @class CTParagraphStyle;
 typedef CTParagraphStyle* CTParagraphStyleRef;
 #else
@@ -38,30 +42,33 @@ typedef struct CTParagraphStyle* CTParagraphStyleRef;
 
 /* Constants */
 
-typedef enum {
+enum {
   kCTLeftTextAlignment = 0,
   kCTRightTextAlignment = 1,
   kCTCenterTextAlignment = 2,
   kCTJustifiedTextAlignment = 3,
   kCTNaturalTextAlignment = 4
-} CTTextAlignment;
+};
+typedef int CTTextAlignment;
 
-typedef enum {
+enum {
   kCTLineBreakByWordWrapping = 0,
   kCTLineBreakByCharWrapping = 1,
   kCTLineBreakByClipping = 2,
   kCTLineBreakByTruncatingHead = 3,
   kCTLineBreakByTruncatingTail = 4,
   kCTLineBreakByTruncatingMiddle = 5
-} CTLineBreakMode;
+};
+typedef int CTLineBreakMode;
 
-typedef enum {
+enum {
   kCTWritingDirectionNatural = -1,
   kCTWritingDirectionLeftToRight = 0,
   kCTWritingDirectionRightToLeft = 1
-} CTWritingDirection;
+};
+typedef int CTWritingDirection;
 
-typedef enum {
+enum {
   kCTParagraphStyleSpecifierAlignment = 0,
   kCTParagraphStyleSpecifierFirstLineHeadIndent = 1,
   kCTParagraphStyleSpecifierHeadIndent = 2,
@@ -77,7 +84,8 @@ typedef enum {
   kCTParagraphStyleSpecifierParagraphSpacingBefore = 12,
   kCTParagraphStyleSpecifierBaseWritingDirection = 13,
   kCTParagraphStyleSpecifierCount = 14
-} CTParagraphStyleSpecifier;
+};
+typedef int CTParagraphStyleSpecifier;
 
 
 /* Data Types */
@@ -106,5 +114,9 @@ bool CTParagraphStyleGetValueForSpecifier(
   size_t valueBufferSize,
   void* valueBuffer
 );
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

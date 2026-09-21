@@ -30,9 +30,13 @@
 #include <CoreGraphics/CGAffineTransform.h>
 #include <CoreGraphics/CGContext.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Data Types */
 
-#ifdef __OBJC__
+#ifdef INTERNAL_BUILD_OBJC
 @class CTRun;
 typedef CTRun* CTRunRef;
 #else
@@ -41,12 +45,13 @@ typedef struct CTRun* CTRunRef;
 
 /* Constants */
 
-typedef enum {
+enum {
   kCTRunStatusNoStatus = 0,
   kCTRunStatusRightToLeft = (1 << 0),
   kCTRunStatusNonMonotonic = (1 << 1),
   kCTRunStatusHasNonIdentityMatrix = (1 << 2)
-} CTRunStatus;
+};
+typedef int CTRunStatus;
 
 /* Functions */
  
@@ -113,5 +118,19 @@ void CTRunDraw(
 );
 
 CFTypeID CTRunGetTypeID();
+
+/* Private APIs */
+
+CGSize CTRunGetInitialAdvance(CTRunRef run);
+
+void CTRunGetBaseAdvancesAndOrigins(
+  CTRunRef,
+  CFRange,
+  CGSize baseAdvances[],
+  CGPoint origins[]);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

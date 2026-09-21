@@ -30,9 +30,14 @@
 #include <CoreGraphics/CGFont.h>
 #include <CoreGraphics/CGGeometry.h>
 #include <CoreText/CTRun.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Data Types */
 
-#ifdef __OBJC__
+#ifdef INTERNAL_BUILD_OBJC
 @class CTLine;
 typedef CTLine* CTLineRef;
 #else
@@ -41,11 +46,22 @@ typedef struct CTLine* CTLineRef;
 
 /* Constants */
 
-typedef enum {
+enum {
   kCTLineTruncationStart = 0,
   kCTLineTruncationEnd = 1,
   kCTLineTruncationMiddle = 2
-} CTLineTruncationType;
+};
+typedef int CTLineTruncationType;
+
+typedef uint32_t CTLineBoundsOptions;
+enum {
+    kCTLineBoundsExcludeTypographicLeading  = 1 << 0,
+    kCTLineBoundsExcludeTypographicShifts   = 1 << 1,
+    kCTLineBoundsUseHangingPunctuation      = 1 << 2,
+    kCTLineBoundsUseGlyphPathBounds         = 1 << 3,
+    kCTLineBoundsUseOpticalBounds           = 1 << 4,
+    kCTLineBoundsIncludeLanguageExtents = 1 << 5,
+};
 
 /* Functions */
 
@@ -104,5 +120,27 @@ CGFloat CTLineGetOffsetForStringIndex(
   CFIndex charIndex,
   CGFloat* secondaryOffset
 );
+
+CGRect CTLineGetBoundsWithOptions(
+  CTLineRef line,
+  CTLineBoundsOptions options);
+
+/* Private APIs */
+
+typedef const UniChar* (*CTUniCharProviderCallback)(
+  CFIndex stringIndex,
+  CFIndex* charCount,
+  CFDictionaryRef* attributes,
+  void* refCon);
+typedef void (*CTUniCharDisposeCallback)(const UniChar* chars, void* refCon);
+
+CTLineRef CTLineCreateWithUniCharProvider(
+  CTUniCharProviderCallback provide,
+  CTUniCharDisposeCallback dispose,
+  void* refCon);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

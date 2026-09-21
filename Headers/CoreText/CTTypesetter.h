@@ -28,9 +28,13 @@
 #include <CoreGraphics/CGBase.h>
 #include <CoreText/CTLine.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Data Types */
 
-#ifdef __OBJC__
+#ifdef INTERNAL_BUILD_OBJC
 @class CTTypesetter;
 typedef CTTypesetter* CTTypesetterRef;
 #else
@@ -69,5 +73,15 @@ CFIndex CTTypesetterSuggestLineBreak(
 );
 
 CFTypeID CTTypesetterGetTypeID();
+
+CTTypesetterRef CTTypesetterCreateWithUniCharProviderAndOptions(
+  CTUniCharProviderCallback provide,
+  CTUniCharDisposeCallback dispose,
+  void* refCon,
+  CFDictionaryRef options);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
