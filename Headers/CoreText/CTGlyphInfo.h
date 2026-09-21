@@ -39,7 +39,7 @@ extern "C" {
 @class CTGlyphInfo;
 typedef CTGlyphInfo* CTGlyphInfoRef;
 #else
-typedef struct CTGlyphInfo* CTGlyphInfoRef;
+typedef struct CF_BRIDGED_TYPE(id) CTGlyphInfo* CTGlyphInfoRef;
 #endif
 
 /* Constants */

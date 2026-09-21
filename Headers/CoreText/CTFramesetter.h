@@ -41,7 +41,7 @@ extern "C" {
 @class CTFramesetter;
 typedef CTFramesetter* CTFramesetterRef;
 #else
-typedef struct CTFramesetter* CTFramesetterRef;
+typedef struct CF_BRIDGED_TYPE(id) CTFramesetter* CTFramesetterRef;
 #endif
 
 /* Functions */

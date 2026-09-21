@@ -38,7 +38,7 @@ extern "C" {
 @class CTFontCollection;
 typedef CTFontCollection* CTFontCollectionRef;
 #else
-typedef struct CTFontCollection* CTFontCollectionRef;
+typedef struct CF_BRIDGED_TYPE(id) CTFontCollection* CTFontCollectionRef;
 #endif
 
 /* Callbacks */

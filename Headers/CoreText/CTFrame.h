@@ -40,7 +40,7 @@ extern "C" {
 @class CTFrame;
 typedef CTFrame* CTFrameRef;
 #else
-typedef struct CTFrame* CTFrameRef;
+typedef struct CF_BRIDGED_TYPE(id) CTFrame* CTFrameRef;
 #endif
 
 /* Constants */

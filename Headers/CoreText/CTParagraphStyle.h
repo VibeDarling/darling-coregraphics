@@ -37,7 +37,7 @@ extern "C" {
 @class CTParagraphStyle;
 typedef CTParagraphStyle* CTParagraphStyleRef;
 #else
-typedef struct CTParagraphStyle* CTParagraphStyleRef;
+typedef struct CF_BRIDGED_TYPE(id) CTParagraphStyle* CTParagraphStyleRef;
 #endif
 
 /* Constants */

@@ -38,7 +38,7 @@ extern "C" {
 @class CTTypesetter;
 typedef CTTypesetter* CTTypesetterRef;
 #else
-typedef struct CTTypesetter* CTTypesetterRef;
+typedef struct CF_BRIDGED_TYPE(id) CTTypesetter* CTTypesetterRef;
 #endif
 
 /* Constants */

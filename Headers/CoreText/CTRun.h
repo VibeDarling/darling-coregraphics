@@ -40,7 +40,7 @@ extern "C" {
 @class CTRun;
 typedef CTRun* CTRunRef;
 #else
-typedef struct CTRun* CTRunRef;
+typedef struct CF_BRIDGED_TYPE(id) CTRun* CTRunRef;
 #endif
 
 /* Constants */

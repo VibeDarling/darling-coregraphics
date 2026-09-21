@@ -41,7 +41,7 @@ extern "C" {
 @class CTLine;
 typedef CTLine* CTLineRef;
 #else
-typedef struct CTLine* CTLineRef;
+typedef struct CF_BRIDGED_TYPE(id) CTLine* CTLineRef;
 #endif
 
 /* Constants */

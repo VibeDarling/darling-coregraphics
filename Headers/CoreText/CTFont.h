@@ -42,7 +42,7 @@ extern "C" {
 @class OPFont;
 typedef OPFont* CTFontRef;
 #else
-typedef struct OPFont* CTFontRef;
+typedef struct CF_BRIDGED_TYPE(id) OPFont* CTFontRef;
 #endif
 
 /* Constants */
