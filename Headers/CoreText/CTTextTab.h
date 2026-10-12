@@ -38,7 +38,7 @@ extern "C" {
 @class CTTextTab;
 typedef CTTextTab* CTTextTabRef;
 #else
-typedef struct CTTextTab* CTTextTabRef;
+typedef struct CF_BRIDGED_TYPE(id) CTTextTab* CTTextTabRef;
 #endif
 
 /* Constants */

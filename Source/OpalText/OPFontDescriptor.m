@@ -28,6 +28,7 @@
    Boston, MA 02110-1301, USA.
 */ 
 
+#import <objc/runtime.h>
 #import <Foundation/NSArray.h>
 #import <Foundation/NSCoder.h>
 #import <Foundation/NSDictionary.h>
@@ -108,7 +109,7 @@ NSString *OPFontVariationAxisNameKey = @"NSCTFontVariationAxisName";
 
   [m addEntriesFromDictionary: attributes];
 
-  new = [isa fontDescriptorWithFontAttributes: m];
+  new = [object_getClass(self) fontDescriptorWithFontAttributes: m];
   RELEASE(m);
 
   return new;
@@ -209,7 +210,7 @@ NSString *OPFontVariationAxisNameKey = @"NSCTFontVariationAxisName";
 
 - (id) copyWithZone: (NSZone *)z
 {
-  OPFontDescriptor *f = [isa allocWithZone: z];
+  OPFontDescriptor *f = [object_getClass(self) allocWithZone: z];
 
   if (f != nil)
   {

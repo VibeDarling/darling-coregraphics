@@ -38,7 +38,7 @@ extern "C" {
 @class OPFontDescriptor;
 typedef OPFontDescriptor* CTFontDescriptorRef;
 #else
-typedef struct OPFontDescriptor* CTFontDescriptorRef;
+typedef struct CF_BRIDGED_TYPE(id) OPFontDescriptor* CTFontDescriptorRef;
 #endif
 
 /* Constants */
