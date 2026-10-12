@@ -28,9 +28,13 @@
 #include <CoreGraphics/CGBase.h>
 #include <CoreText/CTFontTraits.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Data Types */
 
-#ifdef __OBJC__
+#ifdef INTERNAL_BUILD_OBJC
 @class OPFontDescriptor;
 typedef OPFontDescriptor* CTFontDescriptorRef;
 #else
@@ -62,29 +66,40 @@ extern const CFStringRef kCTFontFormatAttribute;
 extern const CFStringRef kCTFontRegistrationScopeAttribute;
 extern const CFStringRef kCTFontPriorityAttribute;
 
-typedef enum {
+enum
+{
   kCTFontDefaultOrientation = 0,
   kCTFontHorizontalOrientation = 1,
   kCTFontVerticalOrientation = 2
-} CTFontOrientation;
+};
 
-typedef enum {
+enum
+{
+  kCTFontOrientationDefault = 0,
+  kCTFontOrientationHorizontal = 1,
+  kCTFontOrientationVertical = 2
+};
+typedef int CTFontOrientation;
+
+enum {
   kCTFontFormatUnrecognized = 0,
   kCTFontFormatOpenTypePostScript = 1,
   kCTFontFormatOpenTypeTrueType = 2,
   kCTFontFormatTrueType = 3,
   kCTFontFormatPostScript = 4,
   kCTFontFormatBitmap = 5
-} CTFontFormat;
+};
+typedef int CTFontFormat;
 
-typedef enum {
+enum {
   kCTFontPrioritySystem = 10000,
   kCTFontPriorityNetwork = 20000,
   kCTFontPriorityComputer = 30000,
   kCTFontPriorityUser = 40000,
   kCTFontPriorityDynamic = 50000,
   kCTFontPriorityProcess = 60000
-} CTFontPriority;
+};
+typedef int CTFontPriority;
 
 /* Functions */
 
@@ -136,5 +151,11 @@ CFTypeRef CTFontDescriptorCopyLocalizedAttribute(
 );
 
 CFTypeID CTFontDescriptorGetTypeID();
+
+bool CTFontDescriptorIsSystemUIFont(CTFontDescriptorRef);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

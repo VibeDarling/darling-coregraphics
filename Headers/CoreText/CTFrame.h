@@ -30,9 +30,13 @@
 #include <CoreGraphics/CGGeometry.h>
 #include <CoreText/CTLine.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Data Types */
 
-#ifdef __OBJC__
+#ifdef INTERNAL_BUILD_OBJC
 @class CTFrame;
 typedef CTFrame* CTFrameRef;
 #else
@@ -43,10 +47,11 @@ typedef struct CTFrame* CTFrameRef;
 
 extern const CFStringRef kCTFrameProgressionAttributeName;
 
-typedef enum {
+enum {
   kCTFrameProgressionTopToBottom = 0,
   kCTFrameProgressionRightToLeft = 1
-} CTFrameProgression;
+};
+typedef int CTFrameProgression;
 
 /* Functions */
 
@@ -72,5 +77,9 @@ void CTFrameDraw(
   CTFrameRef frame,
   CGContextRef context
 );
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
